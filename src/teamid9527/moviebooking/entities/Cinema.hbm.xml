@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-25 22:59:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="teamid9527.moviebooking.entities.Cinema" table="CINEMA">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <property name="stars" type="double">
+            <column name="STARS" />
+        </property>
+        <property name="info" type="java.lang.String">
+            <column name="INFO" />
+        </property>
+        <property name="max_discount" type="double">
+            <column name="MAX_DISCOUNT" />
+        </property>
+        <many-to-one name="town" class="teamid9527.moviebooking.entities.Town" fetch="join" lazy="false">
+            <column name="TOWN" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
