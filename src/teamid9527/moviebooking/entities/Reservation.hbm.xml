@@ -11,7 +11,7 @@
         <many-to-one name="customer" class="teamid9527.moviebooking.entities.Customer" fetch="join" lazy="false">
             <column name="CUSTOMER" />
         </many-to-one>
-        <set name="movieItems" table="t_reservation_movieItem" lazy="false" fetch="join">
+        <set name="movieItems" table="t_reservation_movieItem" lazy="false" fetch="join" inverse="false">
             <key>
                 <column name="r_id" />
             </key>

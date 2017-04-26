@@ -5,6 +5,7 @@ import java.util.List;
 import teamid9527.moviebooking.entities.Cinema;
 import teamid9527.moviebooking.entities.Movie;
 import teamid9527.moviebooking.entities.MovieItem;
+import teamid9527.moviebooking.entities.Reservation;
 
 public interface MovieItemDao {
 
@@ -17,4 +18,5 @@ public interface MovieItemDao {
 	public List<MovieItem> findMovieItemsByCinemaId(Integer cinema_id);
 	
 	public List<MovieItem> findMovieItemsByCinema(Cinema cinema);
+
 }

@@ -96,10 +96,11 @@ public class movieBookingTest {
 		System.out.println(list);
 	}
  	
-	//@Test
+	@Test
 	public void testfindMovieItemById() {
 		MovieItem movieItem = movieItemDao.findMovieItemById(1);
 		System.out.println(movieItem);
+		System.out.println(movieItem.getReservations());
 	}
 	
 	

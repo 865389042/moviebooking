@@ -11,7 +11,7 @@ public class Reservation {
 	
 	private Customer customer;
 	
-	private Set<MovieItem> movieItems = new HashSet<MovieItem>();
+	private Set<MovieItem> movieItems;
 
 	public Integer getId() {
 		return id;

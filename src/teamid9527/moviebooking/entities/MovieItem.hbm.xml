@@ -23,5 +23,11 @@
         <property name="duration" type="java.lang.String">
             <column name="DURATION" />
         </property>
+        <set name="reservations" table="t_reservation_movieItem" lazy="false" fetch="join" inverse="true">
+        	<key>
+        		<column name="mi_id"></column>
+        	</key>
+        	<many-to-many class="teamid9527.moviebooking.entities.Reservation" column="r_id" lazy="false"></many-to-many>
+        </set>
     </class>
 </hibernate-mapping>

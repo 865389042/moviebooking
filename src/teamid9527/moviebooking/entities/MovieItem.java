@@ -1,6 +1,7 @@
 package teamid9527.moviebooking.entities;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 电影场次
@@ -21,6 +22,7 @@ public class MovieItem {
 	
 	private String duration;
 
+	private Set<Reservation> reservations;
 	
 	public Integer getId() {
 		return id;
@@ -68,6 +70,14 @@ public class MovieItem {
 
 	public void setDuration(String duration) {
 		this.duration = duration;
+	}
+	
+	public Set<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	@Override
