@@ -33,4 +33,19 @@ public class CustomerDaoImpl implements CustomerDao {
 		return (Customer)criteria.uniqueResult();
 	}
 
+	public void createCustomer(Customer customer) {
+		getSession().save(customer);
+	}
+
+	public void updateCustomer(Customer customer) {
+		getSession().update(customer);
+	}
+
+	public void deleteCustomerById(Integer id) {
+		Customer customer = getSession().get(Customer.class, id);
+		getSession().delete(customer);
+	}
+
+	
+
 }

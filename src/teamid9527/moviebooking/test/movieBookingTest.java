@@ -50,6 +50,41 @@ public class movieBookingTest {
 		reservationDao = ctx.getBean(ReservationDao.class);
 	}
 
+	@Test
+	public void testdeleteCustomerById() {
+		customerDao.deleteCustomerById(6);	
+	}
+	
+	//@Test
+	public void testupdateCustomer() {
+		Customer customer = new Customer();
+		
+		customer.setC_id(3);
+		customer.setName("Cindy");
+		customer.setPassword("cindy12345");
+		customer.setEamil("Cindy@qq.com");
+		
+		System.out.println(customer);
+		
+		customerDao.updateCustomer(customer);
+		
+		System.out.println(customer);
+	}
+	
+	//@Test
+	public void testcreateCustomer() {
+		Customer customer = new Customer();
+		
+		customer.setName("Cindy");
+		customer.setPassword("cindy1234");
+		customer.setEamil("Cindy@qq.com");
+		
+		System.out.println(customer);
+		
+		customerDao.createCustomer(customer);
+		
+		System.out.println(customer);
+	}
 	
 	//@Test
 	public void testfindReservationByCustomer() {
@@ -96,7 +131,7 @@ public class movieBookingTest {
 		System.out.println(list);
 	}
  	
-	@Test
+	//@Test
 	public void testfindMovieItemById() {
 		MovieItem movieItem = movieItemDao.findMovieItemById(1);
 		System.out.println(movieItem);

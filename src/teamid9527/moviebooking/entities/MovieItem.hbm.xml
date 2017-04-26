@@ -6,7 +6,7 @@
     <class name="teamid9527.moviebooking.entities.MovieItem" table="MOVIEITEM">
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <many-to-one name="movie" class="teamid9527.moviebooking.entities.Movie" fetch="join" lazy="false">
             <column name="MOVIE" />

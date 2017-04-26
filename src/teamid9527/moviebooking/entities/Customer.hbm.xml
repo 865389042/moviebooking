@@ -3,10 +3,11 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-4-25 22:59:11 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="teamid9527.moviebooking.entities.Customer" table="CUSTOMER">
+    <class name="teamid9527.moviebooking.entities.Customer" table="CUSTOMER" select-before-update="true">
         <id name="c_id" type="java.lang.Integer">
             <column name="C_ID" />
-            <generator class="assigned" />
+            <generator class="native">
+            </generator>
         </id>
         <property name="name" type="java.lang.String">
             <column name="NAME" />
