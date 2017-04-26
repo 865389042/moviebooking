@@ -80,6 +80,60 @@ public class MovieItem {
 		this.reservations = reservations;
 	}
 
+
+
+	@Override
+	public int hashCode() {
+		return id;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MovieItem other = (MovieItem) obj;
+		if (id != null && id == other.id)
+			return true;
+		if (cinema == null) {
+			if (other.cinema != null)
+				return false;
+		} else if (!cinema.equals(other.cinema))
+			return false;
+		if (duration == null) {
+			if (other.duration != null)
+				return false;
+		} else if (!duration.equals(other.duration))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (movie == null) {
+			if (other.movie != null)
+				return false;
+		} else if (!movie.equals(other.movie))
+			return false;
+		if (Double.doubleToLongBits(price) != Double
+				.doubleToLongBits(other.price))
+			return false;
+		if (reservations == null) {
+			if (other.reservations != null)
+				return false;
+		} else if (!reservations.equals(other.reservations))
+			return false;
+		if (seat == null) {
+			if (other.seat != null)
+				return false;
+		} else if (!seat.equals(other.seat))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		return "MovieItem [id=" + id + ", movie=" + movie + ", cinema="

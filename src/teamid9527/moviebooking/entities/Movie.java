@@ -41,14 +41,10 @@ public class Movie {
 	public void setStars(double stars) {
 		this.stars = stars;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", name=" + name + ", type=" + type
 				+ ", stars=" + stars + "]";
 	}
-
-	
-	
-	
 }

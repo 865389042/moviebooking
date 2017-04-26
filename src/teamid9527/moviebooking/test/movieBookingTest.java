@@ -55,18 +55,49 @@ public class movieBookingTest {
 	}
 
 	//@Test
+	public void testdeleteMovieItemById() {
+		movieItemDao.deleteMovieItemById(6);
+	}
+	
+	//@Test
+	public void testupdateMovieItem() {
+		MovieItem movieItem = movieItemDao.findMovieItemById(6);
+		movieItem.setPrice(30);
+		movieItemDao.updateMovieItem(movieItem);
+	}
+	
+	//@Test
+	public void testcreateMovieItem() {
+		MovieItem movieItem = new MovieItem();
+		
+		Movie movie = movieDao.findMovieById(1);
+		Cinema cinema = cinemaDao.findCinemaById(1);
+		
+		movieItem.setMovie(movie);
+		movieItem.setCinema(cinema);
+		movieItem.setPrice(60);
+		movieItem.setSeat(50);
+		movieItem.setDuration("15:00-17:00");
+		
+		movieItemDao.createMovieItem(movieItem);
+	}
+	
+	//@Test
 	public void testdeleteReservationById() {
 		reservationDao.deleteReservationById(3);
 	}
 	
 	//@Test
 	public void testupdateReservation() {
-		Reservation reservation = reservationDao.findReservationById(3);
+		Reservation reservation = reservationDao.findReservationById(2);
 		
-		MovieItem movieItem = movieItemDao.findMovieItemById(3);
+		MovieItem movieItem = movieItemDao.findMovieItemById(5);
+		System.out.println(reservation.getMovieItems().size());
+
 		
+		//测试了向set中重复添加
 		reservation.getMovieItems().add(movieItem);
-		
+		System.out.println(reservation.getMovieItems().size());
 		reservationDao.updateReservation(reservation);
 	}
 	
@@ -170,7 +201,7 @@ public class movieBookingTest {
  	
 	//@Test
 	public void testfindMovieItemById() {
-		MovieItem movieItem = movieItemDao.findMovieItemById(1);
+		MovieItem movieItem = movieItemDao.findMovieItemById(5);
 		System.out.println(movieItem);
 		System.out.println(movieItem.getReservations());
 	}

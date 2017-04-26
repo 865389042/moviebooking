@@ -13,6 +13,7 @@ import teamid9527.moviebooking.dao.MovieItemDao;
 import teamid9527.moviebooking.entities.Cinema;
 import teamid9527.moviebooking.entities.Movie;
 import teamid9527.moviebooking.entities.MovieItem;
+import teamid9527.moviebooking.entities.Reservation;
 
 @Repository
 public class MovieItemDaoImpl implements MovieItemDao {
@@ -50,5 +51,23 @@ public class MovieItemDaoImpl implements MovieItemDao {
 	public List<MovieItem> findMovieItemsByCinema(Cinema cinema) {
 		return findMovieItemsByCinemaId(cinema.getId());
 	}
+	
+	public void createMovieItem(MovieItem movieItem) {
+		getSession().save(movieItem);
+	}
+
+	public void updateMovieItem(MovieItem movieItem) {
+		// TODO Auto-generated method stub
+		getSession().update(movieItem);
+	}
+
+	public void deleteMovieItemById(Integer id) {
+		// TODO Auto-generated method stub
+		MovieItem movieItem = getSession().find(MovieItem.class, id);
+		if (movieItem != null)
+			getSession().delete(movieItem);
+	}
+
+	
 
 }

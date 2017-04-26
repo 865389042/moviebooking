@@ -38,6 +38,40 @@ public class Reservation {
 	}
 
 	@Override
+	public int hashCode() {
+		return id;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		if (id != null && id == other.id)
+			return true;
+		if (customer == null) {
+			if (other.customer != null)
+				return false;
+		} else if (!customer.equals(other.customer))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (movieItems == null) {
+			if (other.movieItems != null)
+				return false;
+		} else if (!movieItems.equals(other.movieItems))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", customer=" + customer
 				+ ", movieItems=" + movieItems + "]";
