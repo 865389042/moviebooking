@@ -42,5 +42,18 @@ public class ReservationDaoImpl implements ReservationDao {
 		return findReservationByCustomerId(customer.getC_id());
 	}
 
+	public void createReservation(Reservation reservation) {
+		getSession().save(reservation);
+	}
 
+	public void updateReservation(Reservation reservation) {
+		getSession().update(reservation);
+	}
+
+	public void deleteReservationById(Integer id) {
+		Reservation reservation = (Reservation)getSession().get(Reservation.class, id);
+		if (reservation != null)
+			getSession().delete(reservation);
+	}
+	
 }

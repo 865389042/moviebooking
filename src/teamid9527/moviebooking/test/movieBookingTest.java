@@ -1,9 +1,13 @@
 package teamid9527.moviebooking.test;
 
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.sql.DataSource;
+
+import net.bytebuddy.utility.privilege.GetSystemPropertyAction;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -50,7 +54,40 @@ public class movieBookingTest {
 		reservationDao = ctx.getBean(ReservationDao.class);
 	}
 
-	@Test
+	//@Test
+	public void testdeleteReservationById() {
+		reservationDao.deleteReservationById(3);
+	}
+	
+	//@Test
+	public void testupdateReservation() {
+		Reservation reservation = reservationDao.findReservationById(3);
+		
+		MovieItem movieItem = movieItemDao.findMovieItemById(3);
+		
+		reservation.getMovieItems().add(movieItem);
+		
+		reservationDao.updateReservation(reservation);
+	}
+	
+	//@Test
+	public void testcreateReservation() {
+		Reservation reservation = new Reservation();
+		
+		Customer customer = customerDao.findCustomerById(3);
+		Set<MovieItem> movieItems = new HashSet<MovieItem>();
+		MovieItem movieItem1 = movieItemDao.findMovieItemById(1);
+		MovieItem movieItem2 = movieItemDao.findMovieItemById(2);
+		movieItems.add(movieItem1);
+		movieItems.add(movieItem2);
+		
+		reservation.setCustomer(customer);
+		reservation.setMovieItems(movieItems);
+		
+		reservationDao.createReservation(reservation);
+	}
+	
+	//@Test
 	public void testdeleteCustomerById() {
 		customerDao.deleteCustomerById(6);	
 	}

@@ -43,7 +43,8 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	public void deleteCustomerById(Integer id) {
 		Customer customer = getSession().get(Customer.class, id);
-		getSession().delete(customer);
+		if (customer != null)
+			getSession().delete(customer);
 	}
 
 	
