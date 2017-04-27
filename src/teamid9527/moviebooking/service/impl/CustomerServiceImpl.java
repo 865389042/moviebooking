@@ -9,7 +9,7 @@ import teamid9527.moviebooking.exception.LoginException;
 import teamid9527.moviebooking.exception.RegisterException;
 import teamid9527.moviebooking.exception.UpdateException;
 import teamid9527.moviebooking.service.CustomerService;
-
+	
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -19,16 +19,16 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer login(String username, String password) {
 		Customer customer = customerDao.findCustomerByName(username);
 		if (customer == null)
-			throw new LoginException("ÓÃ»§²»´æÔÚ");
+			throw new LoginException("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		if (!password.equals(customer.getPassword()))
-			throw new LoginException("ÓÃ»§ÃÜÂë´íÎó");
+			throw new LoginException("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		return customer;
 	}
 
 	public boolean register(Customer customer) {
 		Customer _customer = customerDao.findCustomerByName(customer.getName());
 		if (_customer != null)
-			throw new RegisterException("ÓÃ»§ÒÑ´æÔÚ");
+			throw new RegisterException("ï¿½Ã»ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½");
 		// TODO Auto-generated method stub
 		customerDao.createCustomer(customer);
 		return true;
@@ -37,9 +37,9 @@ public class CustomerServiceImpl implements CustomerService {
 	public boolean update(Customer customer) {
 		Customer _customer = customerDao.findCustomerByName(customer.getName());
 		if (_customer == null)
-			throw new UpdateException("ÐèÒª¸üÐÂµÄÓÃ»§²»´æÔÚ");
+			throw new UpdateException("ï¿½ï¿½Òªï¿½ï¿½ï¿½Âµï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		if (_customer.getC_id() != customer.getC_id())
-			throw new UpdateException("Ã»ÓÐÈ¨ÏÞ¸üÐÂ¸ÃÓÃ»§");
+			throw new UpdateException("Ã»ï¿½ï¿½È¨ï¿½Þ¸ï¿½ï¿½Â¸ï¿½ï¿½Ã»ï¿½");
 		customerDao.updateCustomer(customer);
 		return true;
 	}

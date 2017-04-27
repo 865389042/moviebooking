@@ -30,7 +30,7 @@ import teamid9527.moviebooking.entities.Province;
 import teamid9527.moviebooking.entities.Reservation;
 import teamid9527.moviebooking.entities.Town;
 import teamid9527.moviebooking.service.CustomerService;
-
+	
 public class movieBookingTest {
 
 	private ApplicationContext ctx = null;
@@ -122,7 +122,7 @@ public class movieBookingTest {
 		System.out.println(reservation.getMovieItems().size());
 
 		
-		//²âÊÔÁËÏòsetÖÐÖØ¸´Ìí¼Ó
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½setï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½
 		reservation.getMovieItems().add(movieItem);
 		System.out.println(reservation.getMovieItems().size());
 		reservationDao.updateReservation(reservation);
@@ -244,7 +244,7 @@ public class movieBookingTest {
 	
 	//@Test
 	public void testfindMovieByName() {
-		List list = movieDao.findMovieByName("½ð¸ÕÀÇ3");
+		List list = movieDao.findMovieByName("ï¿½ï¿½ï¿½ï¿½ï¿½3");
 		System.out.println(list);
 	}
 	
@@ -269,7 +269,7 @@ public class movieBookingTest {
 	
 	//@Test
 	public void testfindCinemaByName() {
-		Cinema cinema = cinemaDao.findCinemaByName("½ðÒÝÖé½­Ó°³Ç");
+		Cinema cinema = cinemaDao.findCinemaByName("ï¿½ï¿½ï¿½ï¿½ï¿½é½­Ó°ï¿½ï¿½");
 		System.out.println(cinema);
 	}
 	
@@ -298,7 +298,7 @@ public class movieBookingTest {
 		
 	//@Test
 	public void testfindTownByName(){
-		Town town = townDao.findTownByName("·¬Ø®Çø");
+		Town town = townDao.findTownByName("ï¿½ï¿½Ø®ï¿½ï¿½");
 		System.out.println(town);
 	}
 	
@@ -321,7 +321,7 @@ public class movieBookingTest {
 	
 	//@Test
 	public void testfindCityByName(){
-		City city = cityDao.findCityByName("¹ãÖÝÊÐ");
+		City city = cityDao.findCityByName("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		System.out.println(city);
 	}
 	
@@ -333,7 +333,7 @@ public class movieBookingTest {
 	
 	//@Test
 	public void testfindProvinceIdByName() {
-		Integer id = provinceDao.findProvinceIdByName("¹ã¶«Ê¡");
+		Integer id = provinceDao.findProvinceIdByName("ï¿½ã¶«Ê¡");
 		System.out.println(id);
 	}
 	//@Test
