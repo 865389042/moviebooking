@@ -38,6 +38,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	public void updateCustomer(Customer customer) {
+		//更新前先删除Session中旧的Customer，否则会出现两个id相同的Customer，使得Hibernate不知道持久化哪个
+		getSession().evict(getSession().get(Customer.class, customer.getC_id()));
 		getSession().update(customer);
 	}
 

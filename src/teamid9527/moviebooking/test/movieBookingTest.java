@@ -29,6 +29,7 @@ import teamid9527.moviebooking.entities.MovieItem;
 import teamid9527.moviebooking.entities.Province;
 import teamid9527.moviebooking.entities.Reservation;
 import teamid9527.moviebooking.entities.Town;
+import teamid9527.moviebooking.service.CustomerService;
 
 public class movieBookingTest {
 
@@ -41,6 +42,7 @@ public class movieBookingTest {
 	private CustomerDao customerDao;
 	private MovieItemDao movieItemDao;
 	private ReservationDao reservationDao;
+	private CustomerService customerService;
 	
 	{
 		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -52,8 +54,33 @@ public class movieBookingTest {
 		customerDao = ctx.getBean(CustomerDao.class);
 		movieItemDao = ctx.getBean(MovieItemDao.class);
 		reservationDao = ctx.getBean(ReservationDao.class);
+		customerService = ctx.getBean(CustomerService.class);
 	}
 
+	//@Test
+	public void testupdate() {
+		Customer customer = customerService.login("David", "david1234");
+		customer.setPassword("David1234");
+		
+		customerService.update(customer);
+	}
+	
+	//@Test
+	public void testregister() {
+		Customer customer = new Customer();
+		customer.setName("David");
+		customer.setPassword("David1234");
+		customer.setEamil("David@qq.com");
+		
+		customerService.register(customer);
+	}
+	
+	//@Test
+	public void testlogin() {
+		Customer customer =  customerService.login("Bob", "bob1234");
+		System.out.println(customer);
+	}
+	
 	//@Test
 	public void testdeleteMovieItemById() {
 		movieItemDao.deleteMovieItemById(6);
@@ -125,18 +152,14 @@ public class movieBookingTest {
 	
 	//@Test
 	public void testupdateCustomer() {
-		Customer customer = new Customer();
+		Customer customer = customerDao.findCustomerById(3);
 		
-		customer.setC_id(3);
-		customer.setName("Cindy");
-		customer.setPassword("cindy12345");
-		customer.setEamil("Cindy@qq.com");
+		customer.setPassword("cindy1234");
 		
 		System.out.println(customer);
 		
 		customerDao.updateCustomer(customer);
-		
-		System.out.println(customer);
+
 	}
 	
 	//@Test
