@@ -1,6 +1,8 @@
 # moviebooking
 系统分析与设计小组作业
 
+[![Build Status](https://travis-ci.org/865389042/moviebooking.svg?branch=master)](https://travis-ci.org/865389042/moviebooking)
+
 ## 2017-4-26
 1. 完成了Customer、Reservation、MovieItem的增删改查
 2. 完成其余实体的查询

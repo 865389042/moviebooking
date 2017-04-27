@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/index.jsp=UTF-8
+encoding//src/teamid9527/moviebooking/dao/CinemaDao.java=GBK
+encoding/<project>=GBK
 encoding/README.md=UTF-8
+separateDerivedEncodings=true
