@@ -57,12 +57,11 @@ public class MovieItemDaoImpl implements MovieItemDao {
 	}
 
 	public void updateMovieItem(MovieItem movieItem) {
-		// TODO Auto-generated method stub
+		getSession().evict(getSession().get(MovieItem.class, movieItem.getId()));
 		getSession().update(movieItem);
 	}
 
 	public void deleteMovieItemById(Integer id) {
-		// TODO Auto-generated method stub
 		MovieItem movieItem = getSession().find(MovieItem.class, id);
 		if (movieItem != null)
 			getSession().delete(movieItem);

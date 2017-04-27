@@ -47,6 +47,7 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	public void updateReservation(Reservation reservation) {
+		getSession().evict(getSession().get(Reservation.class, reservation.getId()));
 		getSession().update(reservation);
 	}
 
