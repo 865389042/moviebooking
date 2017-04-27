@@ -9,8 +9,8 @@ public interface MovieDao {
 	public Movie findMovieById(Integer id);
 	
 	/**
-	 * Êı¾İ¿â³öÏÖÈßÓà,movieÖĞÒ»¸öÌõÄ¿°üº¬ÁËcinemaµÄĞÅÏ¢£¬»á³öÏÖ¶à¸öÓ°ÔºÉÏÓ³Í¬Ò»²¿µçÓ°µÄÇé¿ö
-	 * ¿ÉÒÔĞŞ¸ÄÊı¾İ¿âÎªmany-to-many
+	 * æ•°æ®åº“å‡ºç°å†—ä½™,movieä¸­ä¸€ä¸ªæ¡ç›®åŒ…å«äº†cinemaçš„ä¿¡æ¯ï¼Œä¼šå‡ºç°å¤šä¸ªå½±é™¢ä¸Šæ˜ åŒä¸€éƒ¨ç”µå½±çš„æƒ…å†µ
+	 * å¯ä»¥ä¿®æ”¹æ•°æ®åº“ä¸ºmany-to-many
 	 */
 	
 	public List<Movie> findMovieByName(String name);

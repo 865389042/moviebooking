@@ -16,7 +16,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	//获取和当前线程绑定的session
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
@@ -38,7 +37,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	public void updateCustomer(Customer customer) {
-		//更新前先删除Session中旧的Customer，否则会出现两个id相同的Customer，使得Hibernate不知道持久化哪个
+		//鏇存柊鍓嶅厛鍒犻櫎Session涓棫鐨凜ustomer锛屽惁鍒欎細鍑虹幇涓や釜id鐩稿悓鐨凜ustomer锛屼娇寰桯ibernate涓嶇煡閬撴寔涔呭寲鍝釜
 		getSession().evict(getSession().get(Customer.class, customer.getC_id()));
 		getSession().update(customer);
 	}

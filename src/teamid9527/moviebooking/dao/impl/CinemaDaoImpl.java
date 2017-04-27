@@ -19,7 +19,6 @@ public class CinemaDaoImpl implements CinemaDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	//获取和当前线程绑定的session
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}

@@ -13,5 +13,5 @@ public interface TownDao {
 	public List<Town> findTownsByCityId(Integer city_id);
 	
 	public List<Town> findTownsByCity(City city);
-
+	
 }

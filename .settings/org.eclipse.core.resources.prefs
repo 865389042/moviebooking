@@ -1,6 +1,11 @@
 eclipse.preferences.version=1
 encoding//WebContent/index.jsp=UTF-8
-encoding//src/teamid9527/moviebooking/dao/CinemaDao.java=GBK
-encoding/<project>=GBK
+encoding//src/teamid9527/moviebooking/dao/CinemaDao.java=UTF-8
+encoding//src/teamid9527/moviebooking/dao/CustomerDao.java=UTF-8
+encoding//src/teamid9527/moviebooking/dao/MovieDao.java=UTF-8
+encoding//src/teamid9527/moviebooking/dao/MovieItemDao.java=UTF-8
+encoding//src/teamid9527/moviebooking/dao/ReservationDao.java=UTF-8
+encoding//src/teamid9527/moviebooking/dao/impl/CustomerDaoImpl.java=UTF-8
+encoding/<project>=UTF-8
 encoding/README.md=UTF-8
 separateDerivedEncodings=true

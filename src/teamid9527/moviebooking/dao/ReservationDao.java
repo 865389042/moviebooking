@@ -14,7 +14,7 @@ public interface ReservationDao {
 	public void createReservation(Reservation reservation);
 	
 	/*
-	 * ¸ù¾İReservation.id¸üĞÂ¶ÔÓ¦µÄÌõÄ¿ 
+	 * æ ¹æ®Reservation.idæ›´æ–°å¯¹åº”çš„æ¡ç›® 
 	 */
 	public void updateReservation(Reservation reservation);
 	

@@ -11,8 +11,8 @@ public interface CustomerDao {
 	public void createCustomer(Customer customer);
 	
 	/**
-	 * ¸ù¾İcustomer.id¸üĞÂÊı¾İ¿âÖĞ¶ÔÓ¦µÄ¼ÇÂ¼
-	 * @param customer ¸üĞÂµÄÊı¾İ£¬ĞèÒªÓĞid
+	 * æ ¹æ®customer.idæ›´æ–°æ•°æ®åº“ä¸­å¯¹åº”çš„è®°å½•
+	 * @param customer æ›´æ–°çš„æ•°æ®ï¼Œéœ€è¦æœ‰id
 	 */
 	public void updateCustomer(Customer customer);
 	

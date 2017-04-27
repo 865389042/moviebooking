@@ -20,14 +20,14 @@ public interface MovieItemDao {
 	public List<MovieItem> findMovieItemsByCinema(Cinema cinema);
 	
 	/**
-	 * Ìí¼ÓÒ»¸öMovieItem
-	 * @param movieItem MovieItem.reservations²»ÓÃ¸³Öµ£¬ÔÚmany-to-manyµÄ¹ØÏµÖĞ£¬MovieItemÊÇ±»Reservation¹ÜÀíµÄ
-	 * Ó¦µ±ÓÉReservation½«MovieItem¼ÓÈëReservation.movieItemsÖĞ£¬È»ºó»áÓÉReservation×Ô¶¯Î¬»¤ËûÃÇÖ®¼äµÄ¹ØÏµ
+	 * æ·»åŠ ä¸€ä¸ªMovieItem
+	 * @param movieItem MovieItem.reservationsä¸ç”¨èµ‹å€¼ï¼Œåœ¨many-to-manyçš„å…³ç³»ä¸­ï¼ŒMovieItemæ˜¯è¢«Reservationç®¡ç†çš„
+	 * åº”å½“ç”±Reservationå°†MovieItemåŠ å…¥Reservation.movieItemsä¸­ï¼Œç„¶åä¼šç”±Reservationè‡ªåŠ¨ç»´æŠ¤ä»–ä»¬ä¹‹é—´çš„å…³ç³»
 	 */
 	public void createMovieItem(MovieItem movieItem);
-	
+
 	public void updateMovieItem(MovieItem movieItem);
-	
+
 	public void deleteMovieItemById(Integer id);
-	
+
 }
