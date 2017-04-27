@@ -59,7 +59,7 @@ public class movieBookingTest {
 
 	//@Test
 	public void testupdate() {
-		Customer customer = customerService.login("David", "david1234");
+		Customer customer = customerService.login("David", "David1234");
 		customer.setPassword("David1234");
 		
 		customerService.update(customer);

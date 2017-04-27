@@ -136,20 +136,37 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
+			 <!-- Exclude dom4j to avoid version conflicts (we have 1.6, this drags 
+                in 1.6.1) -->
+           <exclusions>
+               <exclusion>
+			       <groupId>dom4j</groupId>
+			       <artifactId>dom4j</artifactId>
+			   </exclusion>
+           </exclusions>
 		</dependency>
 		<!-- hibernate -->
 		<dependency>
 		   <groupId>org.hibernate</groupId>
 		   <artifactId>hibernate-core</artifactId>
 		   <version>${hibernate.version}</version>
+		   <!-- Exclude dom4j to avoid version conflicts (we have 1.6, this drags 
+                in 1.6.1) -->
+           <exclusions>
+               <exclusion>
+			       <groupId>dom4j</groupId>
+			       <artifactId>dom4j</artifactId>
+			   </exclusion>
+           </exclusions>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-annotations -->
+		<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
 		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-annotations</artifactId>
-		    <version>3.4.0.GA</version>
+		    <groupId>dom4j</groupId>
+		    <artifactId>dom4j</artifactId>
+		    <version>1.6</version>
 		</dependency>
+		
 		
 		<!-- Test Artifacts -->
 		<dependency>

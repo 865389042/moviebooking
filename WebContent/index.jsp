@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h4>index page</h4>
+	
+	<a href="moviebooking/login">customerLogin</a>
 </body>
 </html>
