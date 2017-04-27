@@ -13,7 +13,7 @@ public class Cinema {
 	private String info;
 	
 	private double max_discount;
-
+	
 	private Town town;
 
 	public Integer getId() {

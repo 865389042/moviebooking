@@ -15,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerDao customerDao;
-	
+		
 	public Customer login(String username, String password) {
 		Customer customer = customerDao.findCustomerByName(username);
 		if (customer == null)

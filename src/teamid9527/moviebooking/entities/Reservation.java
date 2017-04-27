@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Reservation {
-
+	
 	private Integer id;
 	
 	private Customer customer;

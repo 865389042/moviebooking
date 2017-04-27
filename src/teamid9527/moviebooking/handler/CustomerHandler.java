@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/moviebooking")
 @Controller
 public class CustomerHandler {
-
+	
 	private static final String SUCCESS = "success"; 
 	
 	@RequestMapping("/login")

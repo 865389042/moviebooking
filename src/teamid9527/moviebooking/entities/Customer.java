@@ -1,7 +1,7 @@
 package teamid9527.moviebooking.entities;
 
 public class Customer {
-
+	
 	private Integer c_id;
 	
 	private String name;

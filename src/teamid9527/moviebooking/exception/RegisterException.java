@@ -1,7 +1,7 @@
 package teamid9527.moviebooking.exception;
 
 public class RegisterException extends RuntimeException {
-
+	
 	public RegisterException() {
 		super();
 		// TODO Auto-generated constructor stub

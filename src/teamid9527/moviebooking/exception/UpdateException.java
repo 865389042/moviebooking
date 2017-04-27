@@ -1,7 +1,7 @@
 package teamid9527.moviebooking.exception;
 
 public class UpdateException extends RuntimeException {
-
+	
 	public UpdateException() {
 		super();
 		// TODO Auto-generated constructor stub

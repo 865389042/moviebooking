@@ -1,7 +1,7 @@
 package teamid9527.moviebooking.entities;
 
 public class Province {
-	
+		
 	private Integer id;
 	
 	private String name;

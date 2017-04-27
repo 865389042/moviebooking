@@ -1,7 +1,7 @@
 package teamid9527.moviebooking.entities;
 
 public class Town {
-
+	
 	private Integer id;
 	
 	private String name;

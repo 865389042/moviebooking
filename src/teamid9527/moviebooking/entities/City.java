@@ -27,7 +27,7 @@ public class City {
 	public Province getProvince() {
 		return province;
 	}
-
+	
 	public void setProvince(Province province) {
 		this.province = province;
 	}
