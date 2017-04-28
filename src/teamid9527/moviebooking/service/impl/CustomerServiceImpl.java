@@ -43,6 +43,8 @@ public class CustomerServiceImpl implements CustomerService {
 			throw new UpdateException("用户不存在");
 		if (_customer.getC_id() != customer.getC_id())
 			throw new UpdateException("没有权限修改该用户");
+		if (customer.getPassword() == null || customer.getPassword().isEmpty())
+			throw new UpdateException("密码不能为空");
 		customerDao.updateCustomer(customer);
 		return true;
 	}

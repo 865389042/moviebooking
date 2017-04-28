@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -56,5 +57,18 @@ public class CustomerHandler {
 	@RequestMapping("gotoLogin")
 	public String customerGotoLogin() {
 		return "index";
+	}
+	
+	@RequestMapping("update")
+	public String customerUpdate(Customer customer, Map<String, Object> map) {
+		try {
+			customerService.update(customer);
+			map.put("customer2", customer);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			map.put("exception", e.getMessage());
+		}
+		
+		return SUCCESS;
 	}
 }
