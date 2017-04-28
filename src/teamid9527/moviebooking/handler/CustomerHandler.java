@@ -4,12 +4,18 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import javassist.expr.NewArray;
+
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.annotation.SessionScope;
 
 import teamid9527.moviebooking.entities.Customer;
 import teamid9527.moviebooking.service.CustomerService;
@@ -25,13 +31,14 @@ public class CustomerHandler {
 	
 	@RequestMapping("/login")
 	public String customerLogin(Customer customer, Map<String, Object> map) {
+		System.out.println("Login: Customer: " + customer);
 		try {
 			Customer customer2 = customerService.login(customer.getName(), customer.getPassword());
 			map.put("customer2", customer2);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			map.put("exception", e.getMessage());
-			return "index";
+			return "login";
 		}
 		return SUCCESS;
 	}
@@ -55,12 +62,18 @@ public class CustomerHandler {
 	}
 	
 	@RequestMapping("gotoLogin")
-	public String customerGotoLogin() {
-		return "index";
+	public String customerGotoLogin(HttpServletRequest request) {
+		request.getSession().removeAttribute("customer2");
+		return "login";
 	}
 	
 	@RequestMapping("update")
 	public String customerUpdate(Customer customer, Map<String, Object> map) {
+		if (customer == null || customer.getC_id() == null || customer.getC_id().equals("")) {
+			map.put("exception", "用户会话已结束");
+			return "login";
+		}
+			
 		try {
 			customerService.update(customer);
 			map.put("customer2", customer);
