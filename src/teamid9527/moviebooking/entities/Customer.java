@@ -8,7 +8,7 @@ public class Customer {
 	
 	private String password;
 	
-	private String eamil;
+	private String email;
 
 	public Integer getC_id() {
 		return c_id;
@@ -34,18 +34,18 @@ public class Customer {
 		this.password = password;
 	}
 
-	public String getEamil() {
-		return eamil;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEamil(String eamil) {
-		this.eamil = eamil;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
 		return "Customer [c_id=" + c_id + ", name=" + name + ", password="
-				+ password + ", eamil=" + eamil + "]";
+				+ password + ", eamil=" + email + "]";
 	}
 
 	
