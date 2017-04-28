@@ -25,13 +25,16 @@ public class CustomerServiceImpl implements CustomerService {
 		return customer;
 	}
 
-	public boolean register(Customer customer) {
+	public Customer register(Customer customer) {
+		if (customer.getName() == null || customer.getName().isEmpty())
+			throw new RegisterException("用户名不能为空");
+		if (customer.getPassword() == null || customer.getPassword().isEmpty())
+			throw new RegisterException("密码不能为空");
 		Customer _customer = customerDao.findCustomerByName(customer.getName());
 		if (_customer != null)
 			throw new RegisterException("用户已存在");
-		// TODO Auto-generated method stub
 		customerDao.createCustomer(customer);
-		return true;
+		return customerDao.findCustomerByName(customer.getName());
 	}
 
 	public boolean update(Customer customer) {

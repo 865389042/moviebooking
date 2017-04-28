@@ -11,7 +11,6 @@
 	<h4>index page</h4>
 	<a href="gotoRegister">前往注册页面</a>
 	<br>
-	
 	<form action="login" method="post">
 		username: <input type="text" name="name">
 		<p>此处需要实现检查用户名不为空</p>
@@ -21,5 +20,8 @@
 	 	<br>
 	 	<input type="submit" value="登陆">
 	</form>
+	<br>
+	Exception: ${requestScope.exception}
+
 </body>
 </html>
