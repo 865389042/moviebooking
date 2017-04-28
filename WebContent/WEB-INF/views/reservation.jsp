@@ -19,7 +19,14 @@
 	%>
 	
 	<table> 
-	
+	<tr>
+		<td>放映场次id</td>
+		<td>电影</td>
+		<td>影院</td>
+		<td>价格</td>
+		<td>座位</td>
+		<td>时间</td>
+	</tr>
 	<%for (MovieItem movieItem : movieItems) {%> 
 		<tr>
 			<td><%=movieItem.getId()%></td> 

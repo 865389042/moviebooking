@@ -99,7 +99,7 @@ public class CustomerHandler {
 		Customer customer = new Customer();
 		customer.setC_id(c_id);
 		Reservation reservation = reservationService.queryReservation(customer);
-		if (!reservation.getCustomer().getName().equals(name)) {
+		if (reservation == null || !reservation.getCustomer().getName().equals(name)) {
 			map.put("exception", "无权限查看该用户的订单");
 			return "login";
 		}
