@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import teamid9527.moviebooking.dao.CinemaDao;
+import teamid9527.moviebooking.dao.MovieDao;
 import teamid9527.moviebooking.dao.MovieItemDao;
 import teamid9527.moviebooking.entities.Cinema;
 import teamid9527.moviebooking.entities.Movie;
@@ -23,15 +24,27 @@ public class MovieItemServiceImpl implements MovieItemService {
 	@Autowired
 	private CinemaDao cinemaDao;
 	
+	@Autowired
+	private MovieDao movieDao;
+	
 	public Map<Cinema, List<MovieItem>> queryAllMovieItemByCinema() {
 		Map<Cinema, List<MovieItem>> map = new HashMap<Cinema, List<MovieItem>>();
-		
-		return null;
+		List<Cinema> cinemas = cinemaDao.findAllCinemas();
+		for (Cinema cinema : cinemas) {
+			List<MovieItem> movieItems = movieItemDao.findMovieItemsByCinema(cinema);
+			map.put(cinema, movieItems);
+		}
+		return map;
 	}
 
 	public Map<Movie, List<MovieItem>> queryAllMovieItemByMovie() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Movie, List<MovieItem>> map = new HashMap<Movie, List<MovieItem>>();
+		List<Movie> movies = movieDao.findAllMovies();
+		for (Movie movie : movies) {
+			List<MovieItem> movieItems = movieItemDao.findMovieItemsByMovie(movie);
+			map.put(movie, movieItems);
+		}
+		return map;
 	}
 
 }

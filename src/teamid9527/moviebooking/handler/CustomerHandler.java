@@ -25,9 +25,10 @@ import teamid9527.moviebooking.entities.Movie;
 import teamid9527.moviebooking.entities.MovieItem;
 import teamid9527.moviebooking.entities.Reservation;
 import teamid9527.moviebooking.service.CustomerService;
+import teamid9527.moviebooking.service.MovieItemService;
 import teamid9527.moviebooking.service.ReservationService;
 
-@SessionAttributes(value={"customer2", "reservation"})
+@SessionAttributes(value={"customer2", "reservation", "movieItems"})
 @Controller
 public class CustomerHandler {
 	
@@ -39,8 +40,8 @@ public class CustomerHandler {
 	@Autowired
 	private ReservationService reservationService;
 	
-	//@Autowired
-	//private Mov
+	@Autowired
+	private MovieItemService movieItemService;
 	
 	@RequestMapping("/login")
 	public String customerLogin(Customer customer, Map<String, Object> map) {
@@ -143,13 +144,15 @@ public class CustomerHandler {
 	
 	@RequestMapping("/queryMovieItemsByCinema")
 	public String queryMovieByCinema(Map<String, Object> map) {
-		
+		Map movieItemsMap = movieItemService.queryAllMovieItemByCinema();
+		map.put("movieItems", movieItemsMap);
 		return "queryMovieItemsByCinema";
 	}
 	
 	@RequestMapping("/queryMovieItemsByMovie")
 	public String queryMovieByMovie(Map<String, Object> map) {
-		
+		Map movieItemsMap = movieItemService.queryAllMovieItemByMovie();
+		map.put("movieItems", movieItemsMap);
 		return "queryMovieItemsByMovie";
 	}
 }

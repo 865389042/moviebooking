@@ -3,6 +3,7 @@ package teamid9527.moviebooking.test;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.sql.DataSource;
@@ -30,6 +31,7 @@ import teamid9527.moviebooking.entities.Province;
 import teamid9527.moviebooking.entities.Reservation;
 import teamid9527.moviebooking.entities.Town;
 import teamid9527.moviebooking.service.CustomerService;
+import teamid9527.moviebooking.service.MovieItemService;
 	
 public class movieBookingTest {
 
@@ -43,6 +45,7 @@ public class movieBookingTest {
 	private MovieItemDao movieItemDao;
 	private ReservationDao reservationDao;
 	private CustomerService customerService;
+	private MovieItemService movieItemService;
 	
 	{
 		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -55,8 +58,21 @@ public class movieBookingTest {
 		movieItemDao = ctx.getBean(MovieItemDao.class);
 		reservationDao = ctx.getBean(ReservationDao.class);
 		customerService = ctx.getBean(CustomerService.class);
+		movieItemService = ctx.getBean(MovieItemService.class);
 	}
 
+	//@Test
+	public void testqueryAllMovieItemByMovie() {
+		Map map = movieItemService.queryAllMovieItemByMovie();
+		System.out.println(map);
+	}
+	
+	//@Test
+	public void testqueryAllMovieItemByCinema() {
+		Map map = movieItemService.queryAllMovieItemByCinema();
+		System.out.println(map);
+	}
+	
 	//@Test
 	public void testfindAllMovies() {
 		List list = movieDao.findAllMovies();
