@@ -14,7 +14,7 @@ public interface ReservationService {
 	
 	public void insertReservation(Customer customer, MovieItem movieItem);
 	
-	public void deleteReservation(Customer customer, MovieItem movieItem);
+	public Reservation deleteReservation(Customer customer, MovieItem movieItem);
 	
 	
 	

@@ -35,6 +35,7 @@
 			<td><%=movieItem.getPrice()%></td>
 			<td><%=movieItem.getSeat()%></td>
 			<td><%=movieItem.getDuration()%></td>
+			<td><a href="cancelMovieItem?id=<%=movieItem.getId()%>">删除</a></td>
 		</tr> 
 	<%}%> 
 	</table> 

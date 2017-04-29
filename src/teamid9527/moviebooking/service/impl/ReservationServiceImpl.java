@@ -64,7 +64,7 @@ public class ReservationServiceImpl implements ReservationService {
 		
 	}
 
-	public void deleteReservation(Customer customer, MovieItem movieItem) {
+	public Reservation deleteReservation(Customer customer, MovieItem movieItem) {
 		if (customer == null || customer.getC_id() == null)
 			throw new QueryException("非注册用户不可删除电影条目");
 		Reservation reservation = reservationDao.findReservationByCustomer(customer);
@@ -79,6 +79,7 @@ public class ReservationServiceImpl implements ReservationService {
 		boolean success = movieItems.remove(movieItem);
 		if (!success)
 			throw new InsertException("删除失败：订单中不存在该电影条目");
+		return reservation;
 	}
 
 }

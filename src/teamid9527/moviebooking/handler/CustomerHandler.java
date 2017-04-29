@@ -14,12 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.annotation.SessionScope;
 
 import teamid9527.moviebooking.entities.Customer;
+import teamid9527.moviebooking.entities.MovieItem;
 import teamid9527.moviebooking.entities.Reservation;
 import teamid9527.moviebooking.service.CustomerService;
 import teamid9527.moviebooking.service.ReservationService;
@@ -109,6 +111,22 @@ public class CustomerHandler {
 	
 	@RequestMapping("/backToInfo")
 	public String backToInfo(Map<String, Object> map) {
+		System.out.println("backToInfo");
+		Customer customer = (Customer) map.get("customer2");
+		if (customer == null || customer.getC_id() == null) {
+			map.put("exception", "用户会话已结束");
+			return "login";
+		}
 		return SUCCESS;
+	}
+	
+	@RequestMapping("/cancelMovieItem")
+	public String cancelMovieItem(@RequestParam(value="id")  Integer id, Map<String, Object> map) {
+		Customer customer = (Customer) map.get("customer2");
+		MovieItem movieItem = new MovieItem();
+		movieItem.setId(id);
+		Reservation reservation = reservationService.deleteReservation(customer, movieItem);
+		map.put("reservation", reservation);
+		return "reservation";
 	}
 }
