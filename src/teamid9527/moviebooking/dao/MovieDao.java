@@ -6,6 +6,9 @@ import teamid9527.moviebooking.entities.Movie;
 
 public interface MovieDao {
 
+	
+	public List<Movie> findAllMovies();
+	
 	public Movie findMovieById(Integer id);
 	
 	/**

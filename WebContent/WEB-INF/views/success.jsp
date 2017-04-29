@@ -21,6 +21,8 @@
 	<br><br>
 	<a href="queryReservation?c_id=${sessionScope.customer2.c_id}&name=${sessionScope.customer2.name}">查看用户订单</a>
 	<br>
+	<a href="queryMovieItems">查看电影</a>
+	<br>
 	<form action="update" method="post">
 		<input type="hidden" name="c_id" value=${sessionScope.customer2.c_id}>
 		<input type="hidden" name="name" value=${sessionScope.customer2.name}>

@@ -58,6 +58,18 @@ public class movieBookingTest {
 	}
 
 	//@Test
+	public void testfindAllMovies() {
+		List list = movieDao.findAllMovies();
+		System.out.println(list);
+	}
+	
+	//@Test
+	public void testfindAllCinemas() {
+		List list = cinemaDao.findAllCinemas();
+		System.out.println(list);
+	}
+	
+	//@Test
 	public void testupdate() {
 		Customer customer = customerService.login("David", "David1234");
 		customer.setPassword("David1234");
@@ -70,7 +82,7 @@ public class movieBookingTest {
 		Customer customer = new Customer();
 		customer.setName("David");
 		customer.setPassword("David1234");
-		customer.setEamil("David@qq.com");
+		customer.setEmail("David@qq.com");
 		
 		customerService.register(customer);
 	}
@@ -168,7 +180,7 @@ public class movieBookingTest {
 		
 		customer.setName("Cindy");
 		customer.setPassword("cindy1234");
-		customer.setEamil("Cindy@qq.com");
+		customer.setEmail("Cindy@qq.com");
 		
 		System.out.println(customer);
 		

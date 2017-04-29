@@ -3,6 +3,7 @@ package teamid9527.moviebooking.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -23,6 +24,12 @@ public class MovieDaoImpl implements MovieDao {
 		return sessionFactory.getCurrentSession();
 	}
 	
+	public List<Movie> findAllMovies() {
+		Query query = getSession().createQuery("from Movie");
+		List<Movie> movies = query.list();
+		return movies;
+	}
+	
 	public Movie findMovieById(Integer id) {
 		Criteria criteria = getSession().createCriteria(Movie.class);
 		criteria.add(Restrictions.eq("id", id));
@@ -34,5 +41,7 @@ public class MovieDaoImpl implements MovieDao {
 		criteria.add(Restrictions.eq("name", name));
 		return criteria.list();
 	}
+
+	
 
 }

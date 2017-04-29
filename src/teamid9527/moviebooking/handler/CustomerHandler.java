@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.annotation.SessionScope;
 
 import teamid9527.moviebooking.entities.Customer;
+import teamid9527.moviebooking.entities.Movie;
 import teamid9527.moviebooking.entities.MovieItem;
 import teamid9527.moviebooking.entities.Reservation;
 import teamid9527.moviebooking.service.CustomerService;
@@ -37,6 +38,9 @@ public class CustomerHandler {
 	
 	@Autowired
 	private ReservationService reservationService;
+	
+	//@Autowired
+	//private Mov
 	
 	@RequestMapping("/login")
 	public String customerLogin(Customer customer, Map<String, Object> map) {
@@ -128,5 +132,24 @@ public class CustomerHandler {
 		Reservation reservation = reservationService.deleteReservation(customer, movieItem);
 		map.put("reservation", reservation);
 		return "reservation";
+	}
+	
+	@RequestMapping("/queryMovieItems")
+	public String queryMovieItems(Map<String, Object> map) {
+		Customer customer = (Customer) map.get("customer2");
+		System.out.println("queryMovieItems: " + customer);
+		return "queryMovieItems";
+	}
+	
+	@RequestMapping("/queryMovieItemsByCinema")
+	public String queryMovieByCinema(Map<String, Object> map) {
+		
+		return "queryMovieItemsByCinema";
+	}
+	
+	@RequestMapping("/queryMovieItemsByMovie")
+	public String queryMovieByMovie(Map<String, Object> map) {
+		
+		return "queryMovieItemsByMovie";
 	}
 }

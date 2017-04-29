@@ -3,6 +3,7 @@ package teamid9527.moviebooking.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -21,6 +22,12 @@ public class CinemaDaoImpl implements CinemaDao {
 	
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
+	}
+	
+	public List<Cinema> findAllCinemas() {
+		Query query = getSession().createQuery("from Cinema");
+		List<Cinema> cinemas = query.list();
+		return cinemas;
 	}
 	
 	public Cinema findCinemaById(Integer id) {
