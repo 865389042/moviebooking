@@ -11,7 +11,7 @@ public class Reservation {
 	
 	private Customer customer;
 	
-	private Set<MovieItem> movieItems;
+	private List<MovieItem> movieItems;
 
 	public Integer getId() {
 		return id;
@@ -29,11 +29,11 @@ public class Reservation {
 		this.customer = customer;
 	}
 
-	public Set<MovieItem> getMovieItems() {
+	public List<MovieItem> getMovieItems() {
 		return movieItems;
 	}
 
-	public void setMovieItems(Set<MovieItem> movieItems) {
+	public void setMovieItems(List<MovieItem> movieItems) {
 		this.movieItems = movieItems;
 	}
 

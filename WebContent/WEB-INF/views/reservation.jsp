@@ -1,7 +1,7 @@
 <%@page import="teamid9527.moviebooking.entities.Reservation"%>
 <%@page import="teamid9527.moviebooking.entities.MovieItem"%>
 <%@page import="org.springframework.web.context.annotation.SessionScope"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,7 +15,7 @@
 	<br>
 	sessionScope.reservation.customer: ${sessionScope.reservation.customer}	
 	<%Reservation reservation = (Reservation)session.getAttribute("reservation");
-	Set<MovieItem> movieItems = reservation.getMovieItems();
+	List<MovieItem> movieItems = reservation.getMovieItems();
 	%>
 	
 	<table> 
@@ -27,19 +27,21 @@
 		<td>座位</td>
 		<td>时间</td>
 	</tr>
-	<%for (MovieItem movieItem : movieItems) {%> 
+	<%for (int i = 0; i < movieItems.size(); i++) { %>
 		<tr>
-			<td><%=movieItem.getId()%></td> 
-			<td><%=movieItem.getMovie().getName()%></td>
-			<td><%=movieItem.getCinema().getName()%></td>
-			<td><%=movieItem.getPrice()%></td>
-			<td><%=movieItem.getSeat()%></td>
-			<td><%=movieItem.getDuration()%></td>
-			<td><a href="cancelMovieItem?id=<%=movieItem.getId()%>">删除</a></td>
+			<td><%=movieItems.get(i).getId()%></td> 
+			<td><%=movieItems.get(i).getMovie().getName()%></td>
+			<td><%=movieItems.get(i).getCinema().getName()%></td>
+			<td><%=movieItems.get(i).getPrice()%></td>
+			<td><%=movieItems.get(i).getSeat()%></td>
+			<td><%=movieItems.get(i).getDuration()%></td>
+			<td><a href="cancelMovieItem?id=<%=movieItems.get(i).getId()%>">删除</a></td>
 		</tr> 
-	<%}%> 
-	</table> 
-
+	<%} %>
+	</table>
+	<br> 
+	Exception: ${requestScope.exception}
+	<br>
 	sessionScope.reservation.movieItems: ${sessionScope.reservation.movieItems}	
 	<a href="backToInfo">返回</a>
 

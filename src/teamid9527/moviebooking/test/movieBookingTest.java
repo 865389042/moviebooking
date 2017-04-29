@@ -1,6 +1,7 @@
 package teamid9527.moviebooking.test;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -156,12 +157,12 @@ public class movieBookingTest {
 		reservationDao.updateReservation(reservation);
 	}
 	
-	//@Test
+	@Test
 	public void testcreateReservation() {
 		Reservation reservation = new Reservation();
 		
-		Customer customer = customerDao.findCustomerById(3);
-		Set<MovieItem> movieItems = new HashSet<MovieItem>();
+		Customer customer = customerDao.findCustomerById(1);
+		List<MovieItem> movieItems = new ArrayList<MovieItem>();
 		MovieItem movieItem1 = movieItemDao.findMovieItemById(1);
 		MovieItem movieItem2 = movieItemDao.findMovieItemById(2);
 		movieItems.add(movieItem1);

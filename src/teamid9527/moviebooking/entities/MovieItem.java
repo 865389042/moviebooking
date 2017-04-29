@@ -22,7 +22,7 @@ public class MovieItem {
 	
 	private String duration;
 
-	private Set<Reservation> reservations;
+	private List<Reservation> reservations;
 	
 	public Integer getId() {
 		return id;
@@ -72,11 +72,11 @@ public class MovieItem {
 		this.duration = duration;
 	}
 	
-	public Set<Reservation> getReservations() {
+	public List<Reservation> getReservations() {
 		return reservations;
 	}
 
-	public void setReservations(Set<Reservation> reservations) {
+	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 

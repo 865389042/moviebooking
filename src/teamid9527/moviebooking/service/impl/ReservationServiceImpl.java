@@ -1,5 +1,6 @@
 package teamid9527.moviebooking.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservation;
 	}
 
-	public void updateReservation(Customer customer, Set movieItems) {
+	public void updateReservation(Customer customer, List movieItems) {
 		if (customer == null || customer.getC_id() == null)
 			throw new QueryException("非注册用户不可修改订单");
 		Reservation reservation = reservationDao.findReservationByCustomer(customer);
@@ -57,7 +58,7 @@ public class ReservationServiceImpl implements ReservationService {
 			reservation.setCustomer(customer);
 			reservationDao.createReservation(reservation);
 		}
-		Set movieItems = reservation.getMovieItems();
+		List movieItems = reservation.getMovieItems();
 		boolean success = movieItems.add(movieItem);
 		if (!success)
 			throw new InsertException("订单已存在不可重复添加");
@@ -75,7 +76,7 @@ public class ReservationServiceImpl implements ReservationService {
 			reservationDao.createReservation(reservation);
 			throw new DeleteException("删除失败：订单中不存在该电影条目");
 		}
-		Set movieItems = reservation.getMovieItems();
+		List movieItems = reservation.getMovieItems();
 		boolean success = movieItems.remove(movieItem);
 		if (!success)
 			throw new InsertException("删除失败：订单中不存在该电影条目");

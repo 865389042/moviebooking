@@ -42,7 +42,13 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	public void createReservation(Reservation reservation) {
-		getSession().save(reservation);
+		Reservation reservation2 = findReservationByCustomer(reservation.getCustomer());
+		if (reservation2 == null)
+			getSession().save(reservation);
+		else {
+			reservation2.setMovieItems(reservation.getMovieItems());
+			getSession().update(reservation2);
+		}
 	}
 
 	public void updateReservation(Reservation reservation) {

@@ -110,6 +110,7 @@ public class CustomerHandler {
 			map.put("exception", "无权限查看该用户的订单");
 			return "login";
 		}
+		System.out.println("Reservation： " + reservation);
 		map.put("reservation", reservation);
 		return "reservation";
 	}
@@ -130,8 +131,12 @@ public class CustomerHandler {
 		Customer customer = (Customer) map.get("customer2");
 		MovieItem movieItem = new MovieItem();
 		movieItem.setId(id);
-		Reservation reservation = reservationService.deleteReservation(customer, movieItem);
-		map.put("reservation", reservation);
+		try {
+			Reservation reservation = reservationService.deleteReservation(customer, movieItem);
+			map.put("reservation", reservation);
+		} catch (Exception e) {
+			map.put("exception", e.getMessage());
+		}
 		return "reservation";
 	}
 	

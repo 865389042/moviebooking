@@ -1,5 +1,6 @@
 package teamid9527.moviebooking.service;
 
+import java.util.List;
 import java.util.Set;
 
 import teamid9527.moviebooking.entities.Customer;
@@ -10,7 +11,7 @@ public interface ReservationService {
 
 	public Reservation queryReservation(Customer customer);
 
-	public void updateReservation(Customer customer, Set movieItems);
+	public void updateReservation(Customer customer, List movieItems);
 	
 	public void insertReservation(Customer customer, MovieItem movieItem);
 	
