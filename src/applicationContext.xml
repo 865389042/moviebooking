@@ -15,11 +15,12 @@
 	<context:component-scan 
 		base-package="teamid9527.moviebooking" >
 	</context:component-scan>
-
+	
+	<!-- 
 	<mvc:interceptors>
 		<bean class="teamid9527.moviebooking.handler.MyInterceptor"></bean>
 	</mvc:interceptors>
-
+ -->
 
 	<!-- 配置视图解析器：如何把handler方法返回值解析为实际的物理视图 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
