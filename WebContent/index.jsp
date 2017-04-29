@@ -21,5 +21,10 @@
 	 	<br>
 	 	<input type="submit" value="登陆">
 	</form>
+	
+	<a href="queryCinema">查看影院</a>
+	<br>
+	<a href="queryMovie">查看电影</a>	
+	<br>
 </body>
 </html>

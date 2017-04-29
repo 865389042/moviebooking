@@ -31,7 +31,8 @@
 			</tr>
 		<%}%>
 	</table>
-	<a href="backToInfo">返回</a>
+	<a href=”#” onClick=”javascript :history.Go(-1);”>返回上一页</a>
+	<a href="backToInfo">返回用户信息</a>
 	session movieItems:${sessionScope.movieItems}
 </body>
 </html>

@@ -78,8 +78,8 @@ public class CustomerHandler {
 	}
 	
 	@RequestMapping("gotoLogin")
-	public String customerGotoLogin(HttpServletRequest request) {
-		request.getSession().removeAttribute("customer2");
+	public String customerGotoLogin(HttpServletRequest request, Map<String, Object> map) {
+		map.put("customer2", new Customer());
 		return "login";
 	}
 	
@@ -104,6 +104,13 @@ public class CustomerHandler {
 	@RequestMapping("/queryReservation")
 	public String queryReservation(@RequestParam(value="c_id") Integer c_id,
 			@RequestParam(value="name")String name, Map<String, Object> map) {
+		{
+			Customer customer = (Customer) map.get("customer2");
+			if (customer == null || customer.getC_id() == null) {
+				map.put("exception", "用户会话已结束");
+				return "login";
+			}
+		}
 		Customer customer = (Customer) map.get("customer2");
 		Reservation reservation = reservationService.queryReservation(customer);
 		if (reservation == null || !reservation.getCustomer().getName().equals(name)) {
@@ -128,6 +135,13 @@ public class CustomerHandler {
 	
 	@RequestMapping("/cancelMovieItem")
 	public String cancelMovieItem(@RequestParam(value="id")  Integer id, Map<String, Object> map) {
+		{
+			Customer customer = (Customer) map.get("customer2");
+			if (customer == null || customer.getC_id() == null) {
+				map.put("exception", "用户会话已结束");
+				return "login";
+			}
+		}
 		Customer customer = (Customer) map.get("customer2");
 		MovieItem movieItem = new MovieItem();
 		movieItem.setId(id);
@@ -171,6 +185,13 @@ public class CustomerHandler {
 	
 	@RequestMapping("/addMovieItem")
 	public String addMovieItem(@RequestParam(value="id") Integer id, Map<String, Object> map) {
+		{
+			Customer customer = (Customer) map.get("customer2");
+			if (customer == null || customer.getC_id() == null) {
+				map.put("exception", "非登陆用户不可选票");
+				return "login";
+			}
+		}
 		Customer customer = (Customer) map.get("customer2");
 		MovieItem movieItem = new MovieItem();
 		reservationService.insertReservationByMovieItemId(customer, id);
