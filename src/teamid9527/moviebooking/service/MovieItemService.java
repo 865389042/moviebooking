@@ -13,4 +13,9 @@ public interface MovieItemService {
 	
 	public Map<Movie, List<MovieItem>> queryAllMovieItemByMovie();
 	
+	public List<MovieItem> queryMovieItemByCinema(Integer cinema_id);
+	
+	public List<MovieItem> queryMovieItemByMovie(Integer movie_id);
+	
+	
 }

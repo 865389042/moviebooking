@@ -47,4 +47,18 @@ public class MovieItemServiceImpl implements MovieItemService {
 		return map;
 	}
 
+	public List<MovieItem> queryMovieItemByCinema(Integer cinema_id) {
+		Cinema cinema = new Cinema();
+		cinema.setId(cinema_id);
+		List<MovieItem> movieItems = movieItemDao.findMovieItemsByCinema(cinema);
+		return movieItems;
+	}
+
+	public List<MovieItem> queryMovieItemByMovie(Integer movie_id) {
+		Movie movie = new Movie();
+		movie.setId(movie_id);
+		List<MovieItem> movieItems = movieItemDao.findMovieItemsByMovie(movie);
+		return movieItems;
+	}
+
 }

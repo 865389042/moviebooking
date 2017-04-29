@@ -13,6 +13,8 @@ public interface ReservationService {
 
 	public void updateReservation(Customer customer, List movieItems);
 	
+	public void insertReservationByMovieItemId(Customer customer, Integer movieItem_id);
+	
 	public void insertReservation(Customer customer, MovieItem movieItem);
 	
 	public Reservation deleteReservation(Customer customer, MovieItem movieItem);

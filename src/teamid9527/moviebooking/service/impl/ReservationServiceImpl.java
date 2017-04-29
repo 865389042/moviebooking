@@ -1,11 +1,13 @@
 package teamid9527.moviebooking.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import teamid9527.moviebooking.dao.MovieItemDao;
 import teamid9527.moviebooking.dao.ReservationDao;
 import teamid9527.moviebooking.entities.Customer;
 import teamid9527.moviebooking.entities.MovieItem;
@@ -20,6 +22,9 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private ReservationDao reservationDao;
+	
+	@Autowired
+	private MovieItemDao movieItemDao;
 	
 	public Reservation queryReservation(Customer customer) {
 		if (customer == null || customer.getC_id() == null)
@@ -42,12 +47,18 @@ public class ReservationServiceImpl implements ReservationService {
 			System.out.println("用户订单不存在，创建新的用户订单");
 			reservation = new Reservation();
 			reservation.setCustomer(customer);
+			reservation.setMovieItems(new ArrayList<MovieItem>());
 			reservationDao.createReservation(reservation);
 		}
 		reservation.setMovieItems(movieItems);
 		reservationDao.updateReservation(reservation);
 	}
 
+	public void insertReservationByMovieItemId(Customer customer, Integer movieItem_id) {
+		MovieItem movieItem = movieItemDao.findMovieItemById(movieItem_id);
+		insertReservation(customer, movieItem);
+	}
+	
 	public void insertReservation(Customer customer, MovieItem movieItem) {
 		if (customer == null || customer.getC_id() == null)
 			throw new QueryException("非注册用户不可添加电影条目");

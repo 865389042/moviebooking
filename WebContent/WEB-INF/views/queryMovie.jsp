@@ -1,4 +1,3 @@
-<%@page import="teamid9527.moviebooking.entities.Cinema"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
 <%@page import="teamid9527.moviebooking.entities.MovieItem"%>
@@ -13,30 +12,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%	Map<Cinema, List<MovieItem>> map = (Map)session.getAttribute("movieItems");
-		Set<Map.Entry<Cinema, List<MovieItem>>> movieItems = map.entrySet();
+	<%Map<Movie, List<MovieItem>> map = (Map)session.getAttribute("movies");
+	Set<Map.Entry<Movie, List<MovieItem>>> movieItems = map.entrySet();
 	%>
 	<table>
 		<tr>
-			<td>影院id</td>
-			<td>影院名</td>
-			<td>影院地址</td>
+			<td>电影id</td>
+			<td>电影名</td>
+			<td>类型</td>
 			<td>stars</td>
-			<td>info</td>
-			<td>折扣</td>
 		</tr>
-		<%for(Map.Entry<Cinema, List<MovieItem>> movieItem : movieItems) { %>
+		<%for(Map.Entry<Movie, List<MovieItem>> movieItem : movieItems) { %>
 			<tr>
 				<td><%=movieItem.getKey().getId()%></td>
 				<td><%=movieItem.getKey().getName()%></td>
-				<td><%=movieItem.getKey().getAddress()%></td>
+				<td><%=movieItem.getKey().getType()%></td>
 				<td><%=movieItem.getKey().getStars()%></td>
-				<td><%=movieItem.getKey().getInfo()%></td>
-				<td><%=movieItem.getKey().getMax_discount()%></td>
+				<td><a href="queryMovieItemsByMovie?id=<%=movieItem.getKey().getId()%>">查看</a></td>
 			</tr>
 		<%}%>
 	</table>
 	<a href="backToInfo">返回</a>
-	session movieItemsr:${sessionScope.movieItems}
+	session movies:${sessionScope.movies}
 </body>
 </html>

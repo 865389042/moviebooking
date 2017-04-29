@@ -23,9 +23,9 @@
 		查看用户订单
 	</a>
 	<br>
-	<a href="queryMovieItemsByCinema">查看影院</a>
+	<a href="queryCinema">查看影院</a>
 	<br>
-	<a href="queryMovieItemsByMovie">查看电影</a>	
+	<a href="queryMovie">查看电影</a>	
 	<br>
 	<form action="update" method="post">
 		<input type="hidden" name="c_id" value=${sessionScope.customer2.c_id}>

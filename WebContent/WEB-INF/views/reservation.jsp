@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	sessionScope.customer: ${sessionScope.customer}	
+	sessionScope.customer: ${sessionScope.customer2}	
 	<br>
 	sessionScope.reservation.customer: ${sessionScope.reservation.customer}	
 	<%Reservation reservation = (Reservation)session.getAttribute("reservation");
@@ -27,7 +27,8 @@
 		<td>座位</td>
 		<td>时间</td>
 	</tr>
-	<%for (int i = 0; i < movieItems.size(); i++) { %>
+	<%if (movieItems != null)
+	for (int i = 0; i < movieItems.size(); i++) { %>
 		<tr>
 			<td><%=movieItems.get(i).getId()%></td> 
 			<td><%=movieItems.get(i).getMovie().getName()%></td>
@@ -40,10 +41,11 @@
 	<%} %>
 	</table>
 	<br> 
+	<a href="backToInfo">返回</a>
+	<br>
 	Exception: ${requestScope.exception}
 	<br>
 	sessionScope.reservation.movieItems: ${sessionScope.reservation.movieItems}	
-	<a href="backToInfo">返回</a>
 
 </body>
 </html>

@@ -2,6 +2,7 @@ package teamid9527.moviebooking.handler;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ import teamid9527.moviebooking.service.CustomerService;
 import teamid9527.moviebooking.service.MovieItemService;
 import teamid9527.moviebooking.service.ReservationService;
 
-@SessionAttributes(value={"customer2", "reservation", "movieItems"})
+@SessionAttributes(value={"customer2", "reservation", "movieItems", "movies", "cinemas"})
 @Controller
 public class CustomerHandler {
 	
@@ -103,8 +104,7 @@ public class CustomerHandler {
 	@RequestMapping("/queryReservation")
 	public String queryReservation(@RequestParam(value="c_id") Integer c_id,
 			@RequestParam(value="name")String name, Map<String, Object> map) {
-		Customer customer = new Customer();
-		customer.setC_id(c_id);
+		Customer customer = (Customer) map.get("customer2");
 		Reservation reservation = reservationService.queryReservation(customer);
 		if (reservation == null || !reservation.getCustomer().getName().equals(name)) {
 			map.put("exception", "无权限查看该用户的订单");
@@ -140,24 +140,40 @@ public class CustomerHandler {
 		return "reservation";
 	}
 	
-	@RequestMapping("/queryMovieItems")
-	public String queryMovieItems(Map<String, Object> map) {
-		Customer customer = (Customer) map.get("customer2");
-		System.out.println("queryMovieItems: " + customer);
-		return "queryMovieItems";
+	@RequestMapping("/queryCinema")
+	public String queryCinema(Map<String, Object> map) {
+		Map movieItemsMap = movieItemService.queryAllMovieItemByCinema();
+		map.put("cinemas", movieItemsMap);
+		return "queryCinema";
+	}
+	
+	@RequestMapping("/queryMovie")
+	public String queryMovie(Map<String, Object> map) {
+		Map movieItemsMap = movieItemService.queryAllMovieItemByMovie();
+		map.put("movies", movieItemsMap);
+		return "queryMovie";
 	}
 	
 	@RequestMapping("/queryMovieItemsByCinema")
-	public String queryMovieByCinema(Map<String, Object> map) {
-		Map movieItemsMap = movieItemService.queryAllMovieItemByCinema();
-		map.put("movieItems", movieItemsMap);
-		return "queryMovieItemsByCinema";
+	public String queryMovieItemsByCinema(@RequestParam(value="id") Integer id, Map<String, Object> map) {
+		List movieItems =  movieItemService.queryMovieItemByCinema(id);
+		map.put("movieItems", movieItems);
+		return "movieItems";
+		
 	}
 	
 	@RequestMapping("/queryMovieItemsByMovie")
-	public String queryMovieByMovie(Map<String, Object> map) {
-		Map movieItemsMap = movieItemService.queryAllMovieItemByMovie();
-		map.put("movieItems", movieItemsMap);
-		return "queryMovieItemsByMovie";
+	public String queryMovieItemsByMovie(@RequestParam(value="id") Integer id, Map<String, Object> map) {
+		List movieItems = movieItemService.queryMovieItemByMovie(id);
+		map.put("movieItems", movieItems);
+		return "movieItems";
+	}
+	
+	@RequestMapping("/addMovieItem")
+	public String addMovieItem(@RequestParam(value="id") Integer id, Map<String, Object> map) {
+		Customer customer = (Customer) map.get("customer2");
+		MovieItem movieItem = new MovieItem();
+		reservationService.insertReservationByMovieItemId(customer, id);
+		return "movieItems";
 	}
 }
