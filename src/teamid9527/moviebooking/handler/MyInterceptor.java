@@ -18,6 +18,8 @@ public class MyInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 		Customer customer = (Customer) request.getSession().getAttribute("customer2");
 		System.out.println("prehandler: " + customer);
+		if (customer == null || customer.getC_id() == null)
+			response.sendRedirect("/moviebooking/gotoLogin");
 		return true;
 	}
 

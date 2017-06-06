@@ -8,18 +8,19 @@
 </head>
 <body>
 	<h4>success</h4>
-	
+	<!--  
 	request customer:${requestScope.customer2}
 	<br><br>
 	session customer:${sessionScope.customer2}
 	<br>
+	-->
 	Name: ${sessionScope.customer2.name}
 	<br>
 	Password: ${sessionScope.customer2.password}
 	<br>
 	Email: ${sessionScope.customer2.email}
 	<br><br>
-	<a href="queryReservation?c_id=${sessionScope.customer2.c_id}&name=${sessionScope.customer2.name}">
+	<a href="reservation">
 		查看用户订单
 	</a>
 	<br>
@@ -27,12 +28,16 @@
 	<br>
 	<a href="queryMovie">查看电影</a>	
 	<br>
-	<form action="update" method="post">
+	<form action="update" method="POST">
+		<input type="hidden" name="_method" value="PUT">
 		<input type="hidden" name="c_id" value=${sessionScope.customer2.c_id}>
 		<input type="hidden" name="name" value=${sessionScope.customer2.name}>
 	 	new password: <input type="password" name="password">
+	 	<!-- 
+	 	
 	 	<p>此处应实现输入两次密码确认且不能为空的功能</p>
 	 	<p>此处应当实现输入的密码只包括数字、字母、符号</p>
+	 	 -->
 		email: <input type="text" name="email" value=${sessionScope.customer2.email}>
 		<input type="submit" value="修改">
 	</form>

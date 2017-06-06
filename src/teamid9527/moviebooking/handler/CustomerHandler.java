@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.annotation.SessionScope;
@@ -83,11 +84,11 @@ public class CustomerHandler {
 		return "login";
 	}
 	
-	@RequestMapping("update")
+	@RequestMapping(value = "update", method=RequestMethod.PUT)
 	public String customerUpdate(Customer customer, Map<String, Object> map) {
 		if (customer == null || customer.getC_id() == null || customer.getC_id().equals("")) {
 			map.put("exception", "用户会话已结束");
-			return "login";
+			return "redirect:/gotoLogin";
 		}
 			
 		try {
@@ -98,12 +99,12 @@ public class CustomerHandler {
 			map.put("exception", e.getMessage());
 		}
 		
-		return SUCCESS;
+		return "redirect:/backToInfo";
 	}
 	
-	@RequestMapping("/queryReservation")
-	public String queryReservation(@RequestParam(value="c_id") Integer c_id,
-			@RequestParam(value="name")String name, Map<String, Object> map) {
+	
+	@RequestMapping("/reservation")
+	public String queryReservation(Map<String, Object> map) {
 		{
 			Customer customer = (Customer) map.get("customer2");
 			if (customer == null || customer.getC_id() == null) {
@@ -113,7 +114,7 @@ public class CustomerHandler {
 		}
 		Customer customer = (Customer) map.get("customer2");
 		Reservation reservation = reservationService.queryReservation(customer);
-		if (reservation == null || !reservation.getCustomer().getName().equals(name)) {
+		if (reservation == null) {
 			map.put("exception", "无权限查看该用户的订单");
 			return "login";
 		}
@@ -133,13 +134,13 @@ public class CustomerHandler {
 		return SUCCESS;
 	}
 	
-	@RequestMapping("/cancelMovieItem")
-	public String cancelMovieItem(@RequestParam(value="id")  Integer id, Map<String, Object> map) {
+	@RequestMapping(value="/MovieItem/{id}", method=RequestMethod.DELETE)
+	public String cancelMovieItem(@PathVariable("id") Integer id, Map<String, Object> map) {
 		{
 			Customer customer = (Customer) map.get("customer2");
 			if (customer == null || customer.getC_id() == null) {
 				map.put("exception", "用户会话已结束");
-				return "login";
+				return "redirect:/gotoLogin";
 			}
 		}
 		Customer customer = (Customer) map.get("customer2");
@@ -151,9 +152,9 @@ public class CustomerHandler {
 		} catch (Exception e) {
 			map.put("exception", e.getMessage());
 		}
-		return "reservation";
+		return "redirect:/reservation";
 	}
-	
+ 	
 	@RequestMapping("/queryCinema")
 	public String queryCinema(Map<String, Object> map) {
 		Map movieItemsMap = movieItemService.queryAllMovieItemByCinema();
@@ -182,19 +183,25 @@ public class CustomerHandler {
 		map.put("movieItems", movieItems);
 		return "movieItems";
 	}
-	
-	@RequestMapping("/addMovieItem")
-	public String addMovieItem(@RequestParam(value="id") Integer id, Map<String, Object> map) {
+
+	@RequestMapping(value="/MovieItem/{id}", method=RequestMethod.PUT)
+	public String addMovieItem(@PathVariable("id") Integer id, Map<String, Object> map) {
 		{
 			Customer customer = (Customer) map.get("customer2");
 			if (customer == null || customer.getC_id() == null) {
 				map.put("exception", "非登陆用户不可选票");
-				return "login";
+				return "redirect:/gotoLogin";
 			}
 		}
 		Customer customer = (Customer) map.get("customer2");
 		MovieItem movieItem = new MovieItem();
 		reservationService.insertReservationByMovieItemId(customer, id);
+		return "redirect:/movieItems";
+	}
+	
+	@RequestMapping("/movieItems")
+	public String movieItems() {
 		return "movieItems";
 	}
+	
 }

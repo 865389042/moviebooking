@@ -7,8 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+ <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+ <script type="text/javascript">
+ 	$(function() {
+ 		$(".add").click(function() {
+ 			var href = $(this).attr("href");
+ 			$("form").attr("action", href).submit();
+ 			return false;
+ 		})
+ 	}) 
+</script>
 </head>
 <body>
+	<form action="" method="POST">
+		<input type="hidden" name="_method" value="PUT">
+	</form>
 	<%List<MovieItem> movieItems = (List)session.getAttribute("movieItems");%>
 	<table>
 		<tr>
@@ -27,12 +40,15 @@
 				<td><%=movieItem.getPrice()%></td>
 				<td><%=movieItem.getSeat()%></td>
 				<td><%=movieItem.getDuration()%></td>
-				<td><a href="addMovieItem?id=<%=movieItem.getId()%>">添加</a></td>
+				<td><a class="add" href="MovieItem/<%=movieItem.getId()%>">添加</a></td>
 			</tr>
 		<%}%>
 	</table>
-	<a href=”#” onClick=”javascript :history.Go(-1);”>返回上一页</a>
+	
+
 	<a href="backToInfo">返回用户信息</a>
-	session movieItems:${sessionScope.movieItems}
+	<!-- 
+	<input type=button value=后退 onclick="window.history.go(-1)">
+	session movieItems:${sessionScope.movieItems}  -->
 </body>
 </html>

@@ -14,10 +14,12 @@
 	
 	<form action="login" method="post">
 		username: <input type="text" name="name">
-		<p>此处需要实现检查用户名不为空</p>
+		<!-- <p>此处需要实现检查用户名不为空</p> -->
+		
 	 	<br>
 	 	password: <input type="password" name="password">
-	 	<p>此处需要实现检查密码不为空</p>
+	 	<!-- <p>此处需要实现检查密码不为空</p>  -->
+	 	
 	 	<br>
 	 	<input type="submit" value="登陆">
 	</form>

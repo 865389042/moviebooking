@@ -23,5 +23,6 @@
 	 	<input type="submit" value="注册">
 	</form>
 	Exception: ${requestScope.exception}
+	
 </body>
 </html>

@@ -33,6 +33,6 @@
 		<%}%>
 	</table>
 	<a href="backToInfo">返回</a>
-	session movies:${sessionScope.movies}
+	<!-- session movies:${sessionScope.movies} -->
 </body>
 </html>

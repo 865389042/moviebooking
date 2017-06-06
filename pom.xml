@@ -4,6 +4,7 @@
   <artifactId>moviebooking</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -210,8 +211,6 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>${mysql.version}</version>
 		</dependency>
-		
-		
 		
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<dependency>
