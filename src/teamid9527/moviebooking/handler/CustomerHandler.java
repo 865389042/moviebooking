@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import javassist.expr.NewArray;
 
@@ -70,7 +72,13 @@ public class CustomerHandler {
 		try {
 			Customer customer2 = customerService.register(customer);
 			map.put("customer2", customer2);
-		} catch (Exception e) {
+		} catch (ConstraintViolationException e) {
+			Object[] o =   e.getConstraintViolations().toArray();
+			ConstraintViolation c = (ConstraintViolation) o[0];
+			System.err.println(c.getMessage());
+			map.put("exception", c.getMessage());
+			return "register";
+		}  catch (Exception e) {
 			System.err.println(e.getMessage());
 			map.put("exception", e.getMessage());
 			return "register";
@@ -84,22 +92,27 @@ public class CustomerHandler {
 		return "login";
 	}
 	
-	@RequestMapping(value = "update", method=RequestMethod.PUT)
+	@RequestMapping(value = "update")
 	public String customerUpdate(Customer customer, Map<String, Object> map) {
 		if (customer == null || customer.getC_id() == null || customer.getC_id().equals("")) {
 			map.put("exception", "用户会话已结束");
-			return "redirect:/gotoLogin";
+			return "login";
 		}
 			
 		try {
 			customerService.update(customer);
 			map.put("customer2", customer);
+		} catch (ConstraintViolationException e) {
+			Object[] o =   e.getConstraintViolations().toArray();
+			ConstraintViolation c = (ConstraintViolation) o[0];
+			System.err.println(c.getMessage());
+			map.put("exception", c.getMessage());
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			map.put("exception", e.getMessage());
 		}
 		
-		return "redirect:/backToInfo";
+		return SUCCESS;
 	}
 	
 	
@@ -126,6 +139,7 @@ public class CustomerHandler {
 	@RequestMapping("/backToInfo")
 	public String backToInfo(Map<String, Object> map) {
 		System.out.println("backToInfo");
+		System.err.println(map.get("exception"));
 		Customer customer = (Customer) map.get("customer2");
 		if (customer == null || customer.getC_id() == null) {
 			map.put("exception", "用户会话已结束");

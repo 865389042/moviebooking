@@ -54,7 +54,14 @@ public class MovieItemDaoImpl implements MovieItemDao {
 	public List<MovieItem> findMovieItemsByCinemaId(Integer cinema_id) {
 		Criteria criteria = getSession().createCriteria(MovieItem.class);
 		criteria.add(Restrictions.eq("cinema.id", cinema_id));
-		return criteria.list();
+		List<MovieItem> list = criteria.list();
+		Set<MovieItem> set = new HashSet();
+		for (MovieItem movieItem : list) {
+			set.add(movieItem);
+		}
+		list.clear();
+		list.addAll(set);
+		return list;
 	}
 
 	public List<MovieItem> findMovieItemsByCinema(Cinema cinema) {

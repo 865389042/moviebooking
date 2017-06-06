@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>我的订单</title>
  <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
  <script type="text/javascript">
  	$(function() {
@@ -22,17 +22,20 @@
 </head>
 
 <body>
+	<h4>我的订单</h4>
 	<form action="" method="POST">
 		<input type="hidden" name="_method" value="DELETE">
 	</form>
+	<!--  
 	sessionScope.customer: ${sessionScope.customer2}	
 	<br>
 	sessionScope.reservation.customer: ${sessionScope.reservation.customer}	
+	-->
 	<%Reservation reservation = (Reservation)session.getAttribute("reservation");
 	List<MovieItem> movieItems = reservation.getMovieItems();
 	%>
 	
-	<table> 
+	<table border="1" cellpadding="10" cellspacing="0"> 
 	<tr>
 		<td>放映场次id</td>
 		<td>电影</td>
@@ -57,7 +60,9 @@
 	<br> 
 	<a href="backToInfo">返回</a>
 	<br>
-	Exception: ${requestScope.exception}
+	<%if(request.getAttribute("exception") != null) { %>
+		Exception: ${requestScope.exception}
+	<% } %>
 	<br>
 		
 	<!-- sessionScope.reservation.movieItems: ${sessionScope.reservation.movieItems} -->

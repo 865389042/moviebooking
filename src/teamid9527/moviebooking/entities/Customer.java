@@ -1,5 +1,7 @@
 package teamid9527.moviebooking.entities;
 
+import org.hibernate.validator.constraints.Email;
+
 public class Customer {
 	
 	private Integer c_id;
@@ -8,6 +10,7 @@ public class Customer {
 	
 	private String password;
 	
+	@Email
 	private String email;
 
 	public Integer getC_id() {
