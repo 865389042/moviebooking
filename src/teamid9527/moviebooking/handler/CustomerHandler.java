@@ -214,7 +214,8 @@ public class CustomerHandler {
 	}
 	
 	@RequestMapping("/movieItems")
-	public String movieItems() {
+	public String movieItems(Map<String, Object> map) {
+		System.out.println((Customer) map.get("customer2"));
 		return "movieItems";
 	}
 	
