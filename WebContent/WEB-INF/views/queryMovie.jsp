@@ -9,13 +9,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>电影</title>
 </head>
 <body>
+	<h4>电影信息</h4>
 	<%Map<Movie, List<MovieItem>> map = (Map)session.getAttribute("movies");
 	Set<Map.Entry<Movie, List<MovieItem>>> movieItems = map.entrySet();
 	%>
-	<table>
+	<table  border="1" cellpadding="10" cellspacing="0">
 		<tr>
 			<td>电影id</td>
 			<td>电影名</td>
@@ -33,6 +34,6 @@
 		<%}%>
 	</table>
 	<a href="backToInfo">返回</a>
-	session movies:${sessionScope.movies}
+	<!-- session movies:${sessionScope.movies} -->
 </body>
 </html>

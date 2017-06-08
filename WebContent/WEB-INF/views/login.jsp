@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>电影在线订票系统</title>
 </head>
 <body>
-	<h4>index page</h4>
+	<h4>登录</h4>
 	<a href="gotoRegister">前往注册页面</a>
 	<br>
 	<form action="login" method="post">
-		username: <input type="text" name="name">
-		<p>此处需要实现检查用户名不为空</p>
+		用户名: <input type="text" name="name">
+		<!-- <p>此处需要实现检查用户名不为空</p> -->
 	 	<br>
-	 	password: <input type="password" name="password">
-	 	<p>此处需要实现检查密码不为空</p>
+	 	密码: <input type="password" name="password">
+	 	<!-- <p>此处需要实现检查密码不为空</p> -->
 	 	<br>
 	 	<input type="submit" value="登陆">
 	</form>
@@ -25,7 +25,9 @@
 	<br>
 	<a href="queryMovie">查看电影</a>	
 	<br>
-	Exception: ${requestScope.exception}
+	<%if(request.getAttribute("exception") != null) { %>
+		Exception: ${requestScope.exception}
+	<% } %>
 
 </body>
 </html>

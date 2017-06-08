@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import javassist.expr.NewArray;
 
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.annotation.SessionScope;
@@ -69,7 +72,13 @@ public class CustomerHandler {
 		try {
 			Customer customer2 = customerService.register(customer);
 			map.put("customer2", customer2);
-		} catch (Exception e) {
+		} catch (ConstraintViolationException e) {
+			Object[] o =   e.getConstraintViolations().toArray();
+			ConstraintViolation c = (ConstraintViolation) o[0];
+			System.err.println(c.getMessage());
+			map.put("exception", c.getMessage());
+			return "register";
+		}  catch (Exception e) {
 			System.err.println(e.getMessage());
 			map.put("exception", e.getMessage());
 			return "register";
@@ -83,7 +92,7 @@ public class CustomerHandler {
 		return "login";
 	}
 	
-	@RequestMapping("update")
+	@RequestMapping(value = "update")
 	public String customerUpdate(Customer customer, Map<String, Object> map) {
 		if (customer == null || customer.getC_id() == null || customer.getC_id().equals("")) {
 			map.put("exception", "用户会话已结束");
@@ -93,6 +102,11 @@ public class CustomerHandler {
 		try {
 			customerService.update(customer);
 			map.put("customer2", customer);
+		} catch (ConstraintViolationException e) {
+			Object[] o =   e.getConstraintViolations().toArray();
+			ConstraintViolation c = (ConstraintViolation) o[0];
+			System.err.println(c.getMessage());
+			map.put("exception", c.getMessage());
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			map.put("exception", e.getMessage());
@@ -101,9 +115,9 @@ public class CustomerHandler {
 		return SUCCESS;
 	}
 	
-	@RequestMapping("/queryReservation")
-	public String queryReservation(@RequestParam(value="c_id") Integer c_id,
-			@RequestParam(value="name")String name, Map<String, Object> map) {
+	
+	@RequestMapping("/reservation")
+	public String queryReservation(Map<String, Object> map) {
 		{
 			Customer customer = (Customer) map.get("customer2");
 			if (customer == null || customer.getC_id() == null) {
@@ -113,7 +127,7 @@ public class CustomerHandler {
 		}
 		Customer customer = (Customer) map.get("customer2");
 		Reservation reservation = reservationService.queryReservation(customer);
-		if (reservation == null || !reservation.getCustomer().getName().equals(name)) {
+		if (reservation == null) {
 			map.put("exception", "无权限查看该用户的订单");
 			return "login";
 		}
@@ -125,6 +139,7 @@ public class CustomerHandler {
 	@RequestMapping("/backToInfo")
 	public String backToInfo(Map<String, Object> map) {
 		System.out.println("backToInfo");
+		System.err.println(map.get("exception"));
 		Customer customer = (Customer) map.get("customer2");
 		if (customer == null || customer.getC_id() == null) {
 			map.put("exception", "用户会话已结束");
@@ -133,13 +148,13 @@ public class CustomerHandler {
 		return SUCCESS;
 	}
 	
-	@RequestMapping("/cancelMovieItem")
-	public String cancelMovieItem(@RequestParam(value="id")  Integer id, Map<String, Object> map) {
+	@RequestMapping(value="/MovieItem/{id}", method=RequestMethod.DELETE)
+	public String cancelMovieItem(@PathVariable("id") Integer id, Map<String, Object> map) {
 		{
 			Customer customer = (Customer) map.get("customer2");
 			if (customer == null || customer.getC_id() == null) {
 				map.put("exception", "用户会话已结束");
-				return "login";
+				return "redirect:/gotoLogin";
 			}
 		}
 		Customer customer = (Customer) map.get("customer2");
@@ -151,9 +166,9 @@ public class CustomerHandler {
 		} catch (Exception e) {
 			map.put("exception", e.getMessage());
 		}
-		return "reservation";
+		return "redirect:/reservation";
 	}
-	
+ 	
 	@RequestMapping("/queryCinema")
 	public String queryCinema(Map<String, Object> map) {
 		Map movieItemsMap = movieItemService.queryAllMovieItemByCinema();
@@ -182,19 +197,26 @@ public class CustomerHandler {
 		map.put("movieItems", movieItems);
 		return "movieItems";
 	}
-	
-	@RequestMapping("/addMovieItem")
-	public String addMovieItem(@RequestParam(value="id") Integer id, Map<String, Object> map) {
+
+	@RequestMapping(value="/MovieItem/{id}", method=RequestMethod.PUT)
+	public String addMovieItem(@PathVariable("id") Integer id, Map<String, Object> map) {
 		{
 			Customer customer = (Customer) map.get("customer2");
 			if (customer == null || customer.getC_id() == null) {
 				map.put("exception", "非登陆用户不可选票");
-				return "login";
+				return "redirect:/gotoLogin";
 			}
 		}
 		Customer customer = (Customer) map.get("customer2");
 		MovieItem movieItem = new MovieItem();
 		reservationService.insertReservationByMovieItemId(customer, id);
+		return "redirect:/movieItems";
+	}
+	
+	@RequestMapping("/movieItems")
+	public String movieItems(Map<String, Object> map) {
+		System.out.println((Customer) map.get("customer2"));
 		return "movieItems";
 	}
+	
 }

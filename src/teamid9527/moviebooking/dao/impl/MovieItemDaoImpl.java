@@ -1,6 +1,9 @@
 package teamid9527.moviebooking.dao.impl;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -34,7 +37,14 @@ public class MovieItemDaoImpl implements MovieItemDao {
 	public List<MovieItem> findMovieItemsByMovieId(Integer movie_id) {
 		Criteria criteria = getSession().createCriteria(MovieItem.class);
 		criteria.add(Restrictions.eq("movie.id", movie_id));
-		return criteria.list();
+		List<MovieItem> list = criteria.list();
+		Set<MovieItem> set = new HashSet();
+		for (MovieItem movieItem : list) {
+			set.add(movieItem);
+		}
+		list.clear();
+		list.addAll(set);
+		return list;
 	}
 
 	public List<MovieItem> findMovieItemsByMovie(Movie movie) {
@@ -44,7 +54,14 @@ public class MovieItemDaoImpl implements MovieItemDao {
 	public List<MovieItem> findMovieItemsByCinemaId(Integer cinema_id) {
 		Criteria criteria = getSession().createCriteria(MovieItem.class);
 		criteria.add(Restrictions.eq("cinema.id", cinema_id));
-		return criteria.list();
+		List<MovieItem> list = criteria.list();
+		Set<MovieItem> set = new HashSet();
+		for (MovieItem movieItem : list) {
+			set.add(movieItem);
+		}
+		list.clear();
+		list.addAll(set);
+		return list;
 	}
 
 	public List<MovieItem> findMovieItemsByCinema(Cinema cinema) {

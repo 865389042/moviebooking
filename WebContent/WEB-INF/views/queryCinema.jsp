@@ -10,13 +10,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>影院</title>
 </head>
 <body>
+	<h4>影院信息</h4>
 	<%	Map<Cinema, List<MovieItem>> map = (Map)session.getAttribute("cinemas");
 		Set<Map.Entry<Cinema, List<MovieItem>>> movieItems = map.entrySet();
 	%>
-	<table>
+	<table  border="1" cellpadding="10" cellspacing="0"> 
 		<tr>
 			<td>影院id</td>
 			<td>影院名</td>
@@ -38,6 +39,6 @@
 		<%}%>
 	</table>
 	<a href="backToInfo">返回</a>
-	session cinemas:${sessionScope.cinemas}
+	<!-- session cinemas:${sessionScope.cinemas} -->
 </body>
 </html>
